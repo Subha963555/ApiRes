@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 const router = express.Router();
-const JWT_SECRET = 'mynameissubhadipdutta'; // Replace with a more secure secret
+const JWT_SECRET = 'mynameissubhadipdutta'; 
 
 // Register route
 router.post('/register', async (req, res) => {
@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ error: 'Invalid credentials' });
         }
         const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
-        res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' }); // Set secure flag in production
+        res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' }); 
         res.status(200).json({ token });
     } catch (error) {
         console.error('Login error:', error);
